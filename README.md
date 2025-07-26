@@ -6,6 +6,13 @@ Sorts Canon RAW (.CR3) and JPEG files into separate folders via PowerShell
 
 A simple PowerShell script to move `.CR3` (RAW) and `.JPG` files into their own folders.
 
+## 🤔 Why This Exists
+
+As a photographer and media coordinator, I regularly import hundreds of photos and RAW files from Canon DSLRs. Manually separating `.CR3` (RAW) and `.JPG` files takes time and risks errors. This script makes that workflow instant, reliable, and repeatable.
+
+I built it to streamline sorting after events like church services, VBS, or photo shoots — and now I’m sharing it to help others save time too.
+
+
 ## Features
 
 - Prompts for image folder
@@ -21,3 +28,6 @@ A simple PowerShell script to move `.CR3` (RAW) and `.JPG` files into their own 
 
 ```powershell
 .\CR3andJPGSorter.ps1
+
+
+Built by [EmRamos](https://github.com/EmRamos) to serve content creators, church tech teams, and photo pros who want automation without complexity.
