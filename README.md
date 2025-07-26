@@ -27,6 +27,17 @@ Built by [EmRamos](https://github.com/EmRamos) to serve content creators, church
 2. Right-click > Run with PowerShell  
    *OR* open PowerShell and run:
 
+## ⚠️ Requirements
+
+This script is intended for users who are comfortable using PowerShell. You should be familiar with:
+
+- Navigating directories in PowerShell
+- Running scripts (e.g., `.\CR3andJPGSorter.ps1`)
+- Handling execution policies (like using `Set-ExecutionPolicy RemoteSigned` if needed)
+
+This script does **not** include a GUI — it runs entirely in a PowerShell terminal with prompts and text feedback.
+
+
 ```powershell
 .\CR3andJPGSorter.ps1
 
