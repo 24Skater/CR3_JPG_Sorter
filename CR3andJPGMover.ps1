@@ -1,4 +1,5 @@
-﻿# Sort-RawAndJpeg.ps1
+# Version: 1.0.0
+# Sort-RawAndJpeg.ps1
 # Author: EmRamos
 # Function: Move .CR3 (RAW) and .JPG/.JPEG files to destination folders, interactively
 
