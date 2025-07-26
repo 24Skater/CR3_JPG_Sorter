@@ -12,6 +12,7 @@ As a photographer and media coordinator, I regularly import hundreds of photos a
 
 I built it to streamline sorting after events like church services, VBS, or photo shoots — and now I’m sharing it to help others save time too.
 
+Built by [EmRamos](https://github.com/EmRamos) to serve content creators, church tech teams, and photo pros who want automation without complexity.
 
 ## Features
 
@@ -30,4 +31,3 @@ I built it to streamline sorting after events like church services, VBS, or phot
 .\CR3andJPGSorter.ps1
 
 
-Built by [EmRamos](https://github.com/EmRamos) to serve content creators, church tech teams, and photo pros who want automation without complexity.
