@@ -1,4 +1,4 @@
-# CR3 and JPG Sorter
+# ImageSorter
 
 ![Version](https://img.shields.io/github/v/release/24Skater/CR3_JPG_Sorter?style=flat-square)
 ![License](https://img.shields.io/github/license/24Skater/CR3_JPG_Sorter?style=flat-square)
@@ -7,7 +7,7 @@
 
 **Version 2.2.0 released! UX Enhancements: Undo/Rollback, Drag & Drop, and Statistics Dashboard.**
 
-This project sorts camera image files into organized folders by file type, with a simple desktop GUI and PowerShell script.
+A professional image sorting application that organizes camera files (RAW and JPEG) into folders by file type. Features a modern desktop GUI with undo functionality, drag & drop support, and detailed statistics.
 
 ## What's New in v2.2.0
 

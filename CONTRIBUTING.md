@@ -1,4 +1,4 @@
-# Contributing to CR3_JPG_Sorter
+# Contributing to ImageSorter
 
 Thank you for your interest in contributing!
 

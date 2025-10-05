@@ -4,12 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Changed
+- **Rebranded to "ImageSorter"** - More professional and descriptive name
 - Reorganized project structure for better maintainability
   - Created `docs/` folder for documentation
   - Created `screenshots/` folder for images
   - Created `archive/` folder for old GUI versions
   - Cleaned up root directory
   - Updated README paths for screenshots
+  - Added PROJECT_STRUCTURE.md documentation
 
 ## [2.2.0] - 2025-10-05
 ### Added - UX Enhancements

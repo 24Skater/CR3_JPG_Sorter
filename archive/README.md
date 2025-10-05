@@ -1,6 +1,6 @@
-# Archive
+# Archive - ImageSorter
 
-This folder contains previous versions of the ImageSorter GUI for reference.
+This folder contains previous versions of the **ImageSorter** GUI for reference.
 
 ## Files
 

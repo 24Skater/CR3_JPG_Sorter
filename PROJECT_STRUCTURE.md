@@ -1,8 +1,8 @@
-# Project Structure
+# ImageSorter - Project Structure
 
 ## Overview
 
-ImageSorter is a Python-based image sorting application with a modern GUI and Windows installer.
+**ImageSorter** is a professional Python-based image sorting application with a modern GUI, undo functionality, and Windows installer. It organizes camera files (RAW and JPEG formats) into folders by file type.
 
 ---
 
