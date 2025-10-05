@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added badges to README (version, license, platform, Python version).
 
 ## [2.0.0] - 2025-10-05
 ### Major Overhaul

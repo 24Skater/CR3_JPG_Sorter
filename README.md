@@ -1,5 +1,10 @@
 # CR3 and JPG Sorter
 
+![Version](https://img.shields.io/github/v/release/24Skater/CR3_JPG_Sorter?style=flat-square)
+![License](https://img.shields.io/github/license/24Skater/CR3_JPG_Sorter?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.8+-blue?style=flat-square)
+
 **Version 2.0.0 released! Major overhaul with a new GUI, more formats, and installer support.**
 
 This project sorts camera image files into organized folders by file type, with a simple desktop GUI and PowerShell script.
