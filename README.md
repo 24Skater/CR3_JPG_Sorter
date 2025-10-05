@@ -114,15 +114,15 @@ See [CHANGELOG.md](CHANGELOG.md).
 ## Screenshots
 
 ### Main Window (v2.2.0)
-![Main Window](main-window-v2.2.png)
+![Main Window](screenshots/main-window-v2.2.png)
 *Updated UI with Undo button and Drag & Drop support*
 
 ### Statistics Dashboard
-![Statistics Dialog](statistics-dialog.png)
+![Statistics Dialog](screenshots/statistics-dialog.png)
 *Detailed breakdown by file type after sorting*
 
 ### Undo Ready
-![Undo Ready](undo-ready.png)
+![Undo Ready](screenshots/undo-ready.png)
 *Undo button shows number of files that can be reversed*
 
 ### Legacy Screenshots
@@ -130,10 +130,10 @@ See [CHANGELOG.md](CHANGELOG.md).
 <summary>Click to view older screenshots</summary>
 
 #### Original Main Window
-![Main Window](main-window.png)
+![Main Window](screenshots/main-window.png)
 
 #### Sorting Progress
-![Sorting Progress](sorting-progress.png)
+![Sorting Progress](screenshots/sorting-progress.png)
 </details>
 
 ---

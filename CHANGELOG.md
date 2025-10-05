@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed
+- Reorganized project structure for better maintainability
+  - Created `docs/` folder for documentation
+  - Created `screenshots/` folder for images
+  - Created `archive/` folder for old GUI versions
+  - Cleaned up root directory
+  - Updated README paths for screenshots
 
 ## [2.2.0] - 2025-10-05
 ### Added - UX Enhancements
@@ -47,8 +54,8 @@ All notable changes to this project will be documented in this file.
 - Better validation of folder paths and permissions
 - Added badges to README (version, license, platform, Python version)
 - Added screenshots to README (main window and sorting progress)
-- Added UPGRADE_GUIDE.md for migration documentation
-- Added HIGH_PRIORITY_SUMMARY.md for developer reference
+- Added UPGRADE_GUIDE.md for migration documentation (see docs/)
+- Added HIGH_PRIORITY_SUMMARY.md for developer reference (see docs/)
 
 ### Changed
 - Improved error messages with more specific details

@@ -94,3 +94,10 @@ config.json
 
 # Transaction files
 last_transaction.json
+
+# Build artifacts
+*.spec.bak
+*.exe.bak
+
+# Archive folder (optional - include if you want to version control it)
+# archive/
