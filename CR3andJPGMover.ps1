@@ -1,93 +1,50 @@
-# Version: 1.0.0
-# Sort-RawAndJpeg.ps1
-# Author: EmRamos
-# Function: Move .CR3 (RAW) and .JPG/.JPEG files to destination folders, interactively
+# CR3andJPGMover.ps1
+param(
+  [Parameter(Mandatory=$true)]
+  [string]$Path
+)
 
-Clear-Host
-Write-Host "🔁 Canon Image Sorter Script - by EmRamos" -ForegroundColor Cyan
-Write-Host ""
-
-# Prompt: Source path
-$sourcePath = Read-Host "📁 Enter the path where all the images are located"
-if (-not (Test-Path $sourcePath)) {
-    Write-Host "❌ The source path '$sourcePath' does not exist. Exiting." -ForegroundColor Red
-    exit
+# Validate path
+$root = (Resolve-Path -Path $Path -ErrorAction Stop).Path
+if (-not (Test-Path -LiteralPath $root -PathType Container)) {
+  throw "Path not found or not a directory: $root"
 }
 
-# Ask: Do you want to create RAW/JPG folders under the source path?
-$useAutoFolders = Read-Host "🗂️  Do you want to create RAW and JPG subfolders under the source path? (Y/N)"
-
-if ($useAutoFolders -match "^(Y|y)") {
-    $rawPath = Join-Path $sourcePath "RAW"
-    $jpgPath = Join-Path $sourcePath "JPG"
-
-    if (-not (Test-Path $rawPath)) {
-        New-Item -Path $rawPath -ItemType Directory | Out-Null
-        Write-Host "✅ Created RAW folder at $rawPath"
-    }
-
-    if (-not (Test-Path $jpgPath)) {
-        New-Item -Path $jpgPath -ItemType Directory | Out-Null
-        Write-Host "✅ Created JPG folder at $jpgPath"
-    }
-}
-else {
-    # Prompt: Ask for RAW and JPG paths manually
-    $rawPath = Read-Host "📂 Enter the full path where you want to store RAW (.CR3) files"
-    $jpgPath = Read-Host "📂 Enter the full path where you want to store JPG (.JPG/.JPEG) files"
-
-    foreach ($path in @($rawPath, $jpgPath)) {
-        if (-not (Test-Path $path)) {
-            Write-Host "❌ Path '$path' does not exist. Please create it manually and re-run." -ForegroundColor Red
-            exit
-        }
-    }
+# Dest folders
+$cr3Dir = Join-Path $root "CR3"
+$jpgDir = Join-Path $root "JPG"
+foreach ($d in @($cr3Dir, $jpgDir)) {
+  if (-not (Test-Path -LiteralPath $d)) { New-Item -ItemType Directory -Path $d | Out-Null }
 }
 
-# Prepare log file
-$logFile = Join-Path $sourcePath "move_log_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
-Write-Host "`n📄 Logging failures to: $logFile"
-
-# Move files
-$rawExtensions = @("*.CR3")
-$jpgExtensions = @("*.JPG", "*.JPEG")
-
-$filesMoved = 0
-$errors = 0
-
-function Move-Files {
-    param (
-        [string]$filter,
-        [string]$destination
-    )
-
-    Get-ChildItem -Path $sourcePath -Filter $filter -File -ErrorAction SilentlyContinue | ForEach-Object {
-        $file = $_
-        try {
-            $destFile = Join-Path $destination $file.Name
-            Move-Item -Path $file.FullName -Destination $destFile -ErrorAction Stop
-            Write-Host "✅ Moved: $($file.Name)" -ForegroundColor Green
-            $script:filesMoved++
-        }
-        catch {
-            $errorMessage = "❌ FAILED: $($file.Name) → $($_.Exception.Message)"
-            Add-Content -Path $logFile -Value $errorMessage
-            Write-Host $errorMessage -ForegroundColor Red
-            $script:errors++
-        }
-    }
+# Helper to avoid overwriting
+function Get-UniquePath([string]$destPath) {
+  if (-not (Test-Path -LiteralPath $destPath)) { return $destPath }
+  $dir  = Split-Path -Parent $destPath
+  $base = [IO.Path]::GetFileNameWithoutExtension($destPath)
+  $ext  = [IO.Path]::GetExtension($destPath)
+  $i = 1
+  do {
+    $candidate = Join-Path $dir "$base ($i)$ext"
+    $i++
+  } while (Test-Path -LiteralPath $candidate)
+  return $candidate
 }
 
-Write-Host "`n📂 Moving RAW files (.CR3)..."
-foreach ($ext in $rawExtensions) { Move-Files -filter $ext -destination $rawPath }
-
-Write-Host "`n📂 Moving JPG files (.JPG/.JPEG)..."
-foreach ($ext in $jpgExtensions) { Move-Files -filter $ext -destination $jpgPath }
-
-# Summary
-Write-Host "`n✅ Done! Files moved: $filesMoved"
-if ($errors -gt 0) {
-    Write-Host "⚠️  Failures: $errors (see log file for details)"
-} else {
-    Write-Host "🎉 No errors encountered." -ForegroundColor Green
+# Move CR3 -> CR3\
+Get-ChildItem -Path $root -File -Filter *.CR3 -ErrorAction SilentlyContinue | ForEach-Object {
+  $dest = Get-UniquePath (Join-Path $cr3Dir $_.Name)
+  if ($_.FullName -ieq $dest) { return }
+  Move-Item -LiteralPath $_.FullName -Destination $dest
 }
+
+# Move JPG/JPEG -> JPG\   (FIX: don't use -Include; filter by extension instead)
+Get-ChildItem -Path $root -File -ErrorAction SilentlyContinue |
+  Where-Object { $_.Extension -match '^\.jpe?g$' } |
+  ForEach-Object {
+    $dest = Get-UniquePath (Join-Path $jpgDir $_.Name)
+    if ($_.FullName -ieq $dest) { return }
+    Move-Item -LiteralPath $_.FullName -Destination $dest
+  }
+
+Write-Host "Done. CR3 files in '$cr3Dir', JPG/JPEG files in '$jpgDir'."
