@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
   - Show a preview of how many files will be sorted before running.
   - Added a progress bar that updates as files are sorted.
   - Show a popup notification when sorting is complete.
+- Added recursive sorting option to the GUI, which skips folders named after any type (e.g., CR3, JPG, NEF, etc.) to avoid re-sorting already sorted files.
 
 ## [2025-10-05]
 ### Added

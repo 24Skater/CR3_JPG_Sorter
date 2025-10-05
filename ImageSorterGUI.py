@@ -8,6 +8,8 @@ IMAGE_EXTS = [
     '.cr2', '.cr3', '.nef', '.nrw', '.arw', '.srf', '.sr2', '.orf', '.rw2',
     '.raf', '.pef', '.dng', '.tif', '.tiff', '.png', '.bmp', '.jpg', '.jpeg'
 ]
+# Type folder names (uppercased, no dot)
+TYPE_FOLDERS = set(ext[1:].upper() for ext in IMAGE_EXTS)
 
 def is_image_file(filename):
     return os.path.splitext(filename)[1].lower() in IMAGE_EXTS
@@ -32,19 +34,31 @@ def move_to_type_folder(filepath, dest_root):
         i += 1
     shutil.move(filepath, unique_dest_path)
 
-def get_image_files(folder):
-    return [f for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f)) and is_image_file(f)]
+def get_image_files(folder, recursive=False):
+    files = []
+    if not recursive:
+        files = [os.path.join(folder, f) for f in os.listdir(folder)
+                 if os.path.isfile(os.path.join(folder, f)) and is_image_file(f)]
+    else:
+        for root, dirs, filenames in os.walk(folder):
+            # Skip type folders at any level
+            dirs[:] = [d for d in dirs if d.upper() not in TYPE_FOLDERS]
+            for f in filenames:
+                if is_image_file(f):
+                    files.append(os.path.join(root, f))
+    return files
 
 class ImageSorterApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Image Sorter")
-        self.root.geometry("420x260")
+        self.root.geometry("440x290")
         self.root.resizable(False, False)
         self.folder_path = tk.StringVar()
         self.status = tk.StringVar()
         self.file_count = tk.StringVar()
         self.progress = tk.DoubleVar()
+        self.recursive = tk.BooleanVar(value=False)
         self.create_widgets()
 
     def create_widgets(self):
@@ -53,9 +67,10 @@ class ImageSorterApp:
         frame.pack(pady=5)
         tk.Entry(frame, textvariable=self.folder_path, width=35, font=("Segoe UI", 10)).pack(side=tk.LEFT, padx=5)
         tk.Button(frame, text="Browse", command=self.browse_folder).pack(side=tk.LEFT)
+        tk.Checkbutton(self.root, text="Include subfolders (recursive)", variable=self.recursive, command=self.update_file_count).pack(pady=2)
         tk.Label(self.root, textvariable=self.file_count, font=("Segoe UI", 10), fg="gray").pack(pady=2)
         tk.Button(self.root, text="Sort Images", command=self.sort_images, font=("Segoe UI", 11, "bold"), bg="#4CAF50", fg="white").pack(pady=10)
-        self.progressbar = ttk.Progressbar(self.root, variable=self.progress, maximum=100, length=300)
+        self.progressbar = ttk.Progressbar(self.root, variable=self.progress, maximum=100, length=320)
         self.progressbar.pack(pady=2)
         tk.Label(self.root, textvariable=self.status, font=("Segoe UI", 10), fg="blue").pack(pady=5)
 
@@ -72,7 +87,7 @@ class ImageSorterApp:
         if not folder or not os.path.isdir(folder):
             self.file_count.set("")
             return
-        files = get_image_files(folder)
+        files = get_image_files(folder, self.recursive.get())
         self.file_count.set(f"{len(files)} image files will be sorted.")
 
     def sort_images(self):
@@ -80,7 +95,7 @@ class ImageSorterApp:
         if not folder or not os.path.isdir(folder):
             messagebox.showerror("Error", "Please select a valid folder.")
             return
-        files = get_image_files(folder)
+        files = get_image_files(folder, self.recursive.get())
         total = len(files)
         if total == 0:
             self.status.set("No image files to sort.")
@@ -88,8 +103,7 @@ class ImageSorterApp:
         self.progress.set(0)
         self.progressbar.update()
         count = 0
-        for i, entry in enumerate(files, 1):
-            full_path = os.path.join(folder, entry)
+        for i, full_path in enumerate(files, 1):
             move_to_type_folder(full_path, folder)
             count += 1
             self.progress.set(i * 100 / total)
