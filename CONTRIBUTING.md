@@ -2,6 +2,9 @@
 
 Thank you for your interest in contributing!
 
+## Version 2.0.0
+- Major overhaul: new GUI, modular code, installer, and expanded format support.
+
 ## How to Contribute
 - Fork the repository and create your branch from `main`.
 - Make your changes with clear, descriptive commit messages.

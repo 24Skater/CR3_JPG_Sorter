@@ -1,5 +1,7 @@
 # CR3 and JPG Sorter
 
+**Version 2.0.0 released! Major overhaul with a new GUI, more formats, and installer support.**
+
 This project sorts camera image files into organized folders by file type, with a simple desktop GUI and PowerShell script.
 
 ## Features
@@ -9,6 +11,7 @@ This project sorts camera image files into organized folders by file type, with 
 - Recursive sorting (with skip for already sorted folders).
 - Progress bar, file count preview, and robust error handling.
 - Modular Python code (GUI and core logic separated).
+- Windows installer with Start Menu and desktop shortcut support.
 
 ## Quick Start (Python GUI)
 1. **Requirements:** Python 3.8+ (Tkinter is included with standard Python).
@@ -30,9 +33,13 @@ This project sorts camera image files into organized folders by file type, with 
   ```
 - Build the executable:
   ```
-  pyinstaller pyinstaller.spec
+  pyinstaller --onefile --windowed --icon=icon.ico ImageSorterGUI.py
   ```
 - The `.exe` will be in the `dist/` folder.
+
+## Creating a Windows Installer
+- Use Inno Setup to create a professional installer with Start Menu and desktop shortcut support.
+- See the documentation or ask for a sample script.
 
 ## PowerShell Script
 - `CR3andJPGMover.ps1`: Moves CR3 and JPG/JPEG files into `CR3` and `JPG` subfolders, respectively.
