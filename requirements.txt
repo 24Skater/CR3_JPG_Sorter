@@ -1,0 +1,6 @@
+# Minimum Python version
+python_version >= 3.8
+
+# Optional for development
+pytest
+pyinstaller
