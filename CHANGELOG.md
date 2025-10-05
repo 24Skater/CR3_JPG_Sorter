@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
   - Added a progress bar that updates as files are sorted.
   - Show a popup notification when sorting is complete.
 - Added recursive sorting option to the GUI, which skips folders named after any type (e.g., CR3, JPG, NEF, etc.) to avoid re-sorting already sorted files.
+- Improved robustness:
+  - Skips and reports files that cannot be moved (read-only/locked), showing a summary after sorting.
+  - Treats .jpg and .jpeg as the same (both go to JPG folder).
+  - Added option to move unsupported files to an 'Other' folder (via checkbox).
 
 ## [2025-10-05]
 ### Added
