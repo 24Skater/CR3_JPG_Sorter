@@ -62,7 +62,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 See [CHANGELOG.md](CHANGELOG.md).
 
 ## Screenshots
-*Add screenshots of the GUI here!*
+
+### Main Window
+![Main Window](main-window.png)
+
+### Sorting Progress
+![Sorting Progress](sorting-progress.png)
 
 ---
 
