@@ -5,9 +5,21 @@
 ![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.8+-blue?style=flat-square)
 
-**Version 2.0.0 released! Major overhaul with a new GUI, more formats, and installer support.**
+**Version 2.1.0 released! High priority enhancements: Preview mode, Threading, Logging, Config management, and better error handling.**
 
 This project sorts camera image files into organized folders by file type, with a simple desktop GUI and PowerShell script.
+
+## What's New in v2.1.0
+
+**High Priority Enhancements:**
+- 🔍 **Preview Mode** - See what will be moved before executing
+- ⚡ **Background Threading** - GUI stays responsive, never freezes
+- ❌ **Cancel Button** - Stop operations at any time
+- 📝 **Comprehensive Logging** - All operations logged to `logs/` folder
+- ⚙️ **Configuration Management** - Remembers preferences and supports custom extensions
+- 🛡️ **Better Error Handling** - Specific error messages for troubleshooting
+
+[See CHANGELOG.md for full details](CHANGELOG.md)
 
 ## Features
 - Sorts images by type (CR3, JPG, NEF, etc.) into corresponding folders.
@@ -53,6 +65,12 @@ To add custom file extensions, edit `config.json` and add to the `custom_extensi
 }
 ```
 
+## Download
+
+**[Download the latest installer from GitHub Releases](https://github.com/24Skater/CR3_JPG_Sorter/releases/latest)**
+
+Or build from source:
+
 ## Packaging as an .exe
 - Install PyInstaller:
   ```
@@ -60,13 +78,14 @@ To add custom file extensions, edit `config.json` and add to the `custom_extensi
   ```
 - Build the executable:
   ```
-  pyinstaller --onefile --windowed --icon=icon.ico ImageSorterGUI.py
+  python -m PyInstaller pyinstaller.spec
   ```
-- The `.exe` will be in the `dist/` folder.
+- The `.exe` will be in the `dist/ImageSorter/` folder.
 
 ## Creating a Windows Installer
 - Use Inno Setup to create a professional installer with Start Menu and desktop shortcut support.
-- See the documentation or ask for a sample script.
+- Compile `imagesorter.iss` with Inno Setup after building the .exe.
+- Output: `dist/ImageSorterSetup.exe`
 
 ## PowerShell Script
 - `CR3andJPGMover.ps1`: Moves CR3 and JPG/JPEG files into `CR3` and `JPG` subfolders, respectively.
