@@ -5,50 +5,59 @@
 ![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.8+-blue?style=flat-square)
 
-**Version 2.1.0 released! High priority enhancements: Preview mode, Threading, Logging, Config management, and better error handling.**
+**Version 2.2.0 released! UX Enhancements: Undo/Rollback, Drag & Drop, and Statistics Dashboard.**
 
 This project sorts camera image files into organized folders by file type, with a simple desktop GUI and PowerShell script.
 
-## What's New in v2.1.0
+## What's New in v2.2.0
 
-**High Priority Enhancements:**
-- 🔍 **Preview Mode** - See what will be moved before executing
-- ⚡ **Background Threading** - GUI stays responsive, never freezes
-- ❌ **Cancel Button** - Stop operations at any time
-- 📝 **Comprehensive Logging** - All operations logged to `logs/` folder
-- ⚙️ **Configuration Management** - Remembers preferences and supports custom extensions
-- 🛡️ **Better Error Handling** - Specific error messages for troubleshooting
+**UX Enhancements:**
+- ⟲ **Undo/Rollback** - Reverse your last sort operation with one click
+- 🎯 **Drag & Drop** - Drop folders directly onto the window
+- 📊 **Statistics Dashboard** - See detailed breakdown by file type after sorting
+
+**Previous (v2.1.0) High Priority Enhancements:**
+- 🔍 Preview Mode | ⚡ Background Threading | ❌ Cancel Button
+- 📝 Comprehensive Logging | ⚙️ Configuration Management | 🛡️ Better Error Handling
 
 [See CHANGELOG.md for full details](CHANGELOG.md)
 
 ## Features
 - Sorts images by type (CR3, JPG, NEF, etc.) into corresponding folders.
 - Supports many DSLR/mirrorless camera formats (CR2, CR3, NEF, ARW, DNG, TIFF, etc.).
-- **Custom file extensions** - Add your own file types via configuration.
-- Optionally moves unsupported files to an 'Other' folder.
-- Recursive sorting (with skip for already sorted folders).
+- **Undo/Rollback** - Reverse your last sort operation with one click.
+- **Drag & Drop** - Drop folders directly onto the window.
+- **Statistics Dashboard** - Detailed breakdown by file type after sorting.
 - **Preview mode** - See what will be moved before executing.
 - **Background threading** - GUI remains responsive during operations.
 - **Cancel button** - Stop sorting at any time.
-- Progress bar, file count preview, and robust error handling.
+- **Custom file extensions** - Add your own file types via configuration.
 - **Comprehensive logging** - All operations logged to file for troubleshooting.
 - **Configuration management** - Remembers your preferences and last used folder.
+- Optionally moves unsupported files to an 'Other' folder.
+- Recursive sorting (with skip for already sorted folders).
+- Progress bar, file count preview, and robust error handling.
 - Modular Python code (GUI and core logic separated).
 - Windows installer with Start Menu and desktop shortcut support.
 
 ## Quick Start (Python GUI)
-1. **Requirements:** Python 3.8+ (Tkinter is included with standard Python).
+1. **Requirements:** Python 3.8+ and install dependencies:
+   ```
+   pip install tkinterdnd2
+   ```
 2. **Run the app:**
    ```
-   python ImageSorterGUI_v3.py
+   python ImageSorterGUI_v4.py
    ```
 3. **Usage:**
-   - Click 'Browse' to select a folder.
+   - **Drag & drop** a folder onto the window, or click 'Browse' to select.
    - (Optional) Check 'Include subfolders (recursive)' to sort recursively.
    - (Optional) Check 'Move unsupported files to Other folder'.
    - Click 'Preview' to see what will be moved (recommended first time).
    - Click 'Sort Images' to perform the sort operation.
-   - Use 'Cancel' to stop if needed.
+   - View **statistics** after sorting showing breakdown by type.
+   - Use '**Undo Last Sort**' button to reverse if needed.
+   - Use 'Cancel' to stop during sorting.
    - Check `logs/` folder for detailed operation logs.
 
 ## Configuration
@@ -104,11 +113,28 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 ## Screenshots
 
-### Main Window
+### Main Window (v2.2.0)
+![Main Window](main-window-v2.2.png)
+*Updated UI with Undo button and Drag & Drop support*
+
+### Statistics Dashboard
+![Statistics Dialog](statistics-dialog.png)
+*Detailed breakdown by file type after sorting*
+
+### Undo Ready
+![Undo Ready](undo-ready.png)
+*Undo button shows number of files that can be reversed*
+
+### Legacy Screenshots
+<details>
+<summary>Click to view older screenshots</summary>
+
+#### Original Main Window
 ![Main Window](main-window.png)
 
-### Sorting Progress
+#### Sorting Progress
 ![Sorting Progress](sorting-progress.png)
+</details>
 
 ---
 

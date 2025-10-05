@@ -91,3 +91,6 @@ logs/
 
 # User configuration
 config.json
+
+# Transaction files
+last_transaction.json

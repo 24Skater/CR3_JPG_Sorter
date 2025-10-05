@@ -3,6 +3,7 @@ import shutil
 from typing import List, Tuple, Optional, Set
 from Logger import logger
 from Config import config
+from TransactionManager import transaction_manager
 
 # Base image extensions
 BASE_IMAGE_EXTS: List[str] = [
@@ -73,6 +74,10 @@ def move_to_type_folder(filepath: str, dest_root: str) -> Tuple[bool, Optional[s
         # Attempt to move file
         shutil.move(filepath, unique_dest_path)
         logger.info(f"Moved: {filepath} -> {unique_dest_path}")
+        
+        # Record transaction for undo
+        transaction_manager.add_transaction(filepath, unique_dest_path)
+        
         return True, None
         
     except PermissionError as e:
@@ -125,6 +130,10 @@ def move_to_other_folder(filepath: str, dest_root: str) -> Tuple[bool, Optional[
         # Attempt to move file
         shutil.move(filepath, unique_dest_path)
         logger.info(f"Moved to Other: {filepath} -> {unique_dest_path}")
+        
+        # Record transaction for undo
+        transaction_manager.add_transaction(filepath, unique_dest_path)
+        
         return True, None
         
     except PermissionError as e:

@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-10-05
+### Added - UX Enhancements
+- **Undo/Rollback System** - TransactionManager tracks all file moves
+  - Undo button reverses last sort operation
+  - Shows number of files that can be undone
+  - Transaction log saved to `last_transaction.json`
+  - Handles errors gracefully (files moved/deleted)
+- **Drag & Drop Support** - Drop folders directly onto GUI window
+  - Visual hint at top of window
+  - Uses tkinterdnd2 library
+  - Falls back gracefully if library not available
+- **Statistics Dashboard** - Shows detailed results after sorting
+  - Breakdown by file type (CR3, JPG, etc.)
+  - Shows total sorted and skipped counts
+  - Persistent display in GUI
+  - Also shown in completion dialog
+- Added 3 new screenshots showcasing v2.2.0 features
+
+### Changed
+- Updated GUI to v4 (ImageSorterGUI_v4.py)
+- Enhanced completion dialog with statistics
+- Improved visual feedback throughout app
+- Window size increased to accommodate new features (520x480)
+
+### Technical
+- Added TransactionManager.py module for undo functionality
+- Updated ImageSorterCore.py to record transactions
+- Added tkinterdnd2 as a dependency
+- Updated .gitignore to exclude transaction files
+- All new code fully type-annotated
+
 ## [2.1.0] - 2025-10-05
 ### Added
 - **Logging system** with rotating file handlers and detailed operation logs
