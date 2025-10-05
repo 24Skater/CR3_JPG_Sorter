@@ -97,5 +97,8 @@ class ImageSorterApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
+    # Set window icon if icon.ico exists
+    if os.path.exists('icon.ico'):
+        root.iconbitmap('icon.ico')
     app = ImageSorterApp(root)
     root.mainloop()
