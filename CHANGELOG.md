@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Start tracking all changes in this changelog.
 - Updated Python GUI to sort images by file type (extension folder, e.g., CR3, JPG, NEF) instead of by filename folder.
+- Enhanced user experience in the GUI:
+  - Show a preview of how many files will be sorted before running.
+  - Added a progress bar that updates as files are sorted.
+  - Show a popup notification when sorting is complete.
 
 ## [2025-10-05]
 ### Added
