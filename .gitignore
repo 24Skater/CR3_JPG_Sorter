@@ -84,3 +84,10 @@ $RECYCLE.BIN/
 
 # Inno Setup scripts
 *.iss
+
+# Application logs
+logs/
+*.log
+
+# User configuration
+config.json

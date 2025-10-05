@@ -1,6 +1,6 @@
-# Minimum Python version
-python_version >= 3.8
+# Core dependencies (all built-in for Python 3.8+)
+# No external dependencies required for core functionality
 
-# Optional for development
-pytest
-pyinstaller
+# Optional development dependencies
+pytest>=7.0.0
+pyinstaller>=5.0.0
