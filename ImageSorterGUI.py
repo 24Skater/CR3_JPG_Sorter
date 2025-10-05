@@ -12,10 +12,13 @@ IMAGE_EXTS = [
 def is_image_file(filename):
     return os.path.splitext(filename)[1].lower() in IMAGE_EXTS
 
-def move_to_filename_folder(filepath, dest_root):
-    basename = os.path.splitext(os.path.basename(filepath))[0]
-    ext = os.path.splitext(filepath)[1]
-    dest_dir = os.path.join(dest_root, basename)
+def move_to_type_folder(filepath, dest_root):
+    ext = os.path.splitext(filepath)[1].lower()
+    if ext.startswith('.'):
+        ext_folder = ext[1:].upper()
+    else:
+        ext_folder = ext.upper()
+    dest_dir = os.path.join(dest_root, ext_folder)
     os.makedirs(dest_dir, exist_ok=True)
     dest_path = os.path.join(dest_dir, os.path.basename(filepath))
     # Avoid overwrite
@@ -24,7 +27,8 @@ def move_to_filename_folder(filepath, dest_root):
     i = 1
     unique_dest_path = dest_path
     while os.path.exists(unique_dest_path):
-        unique_dest_path = os.path.join(dest_dir, f"{basename} ({i}){ext}")
+        base = os.path.splitext(os.path.basename(filepath))[0]
+        unique_dest_path = os.path.join(dest_dir, f"{base} ({i}){ext}")
         i += 1
     shutil.move(filepath, unique_dest_path)
 
@@ -33,7 +37,7 @@ def sort_images(folder, status_callback):
     for entry in os.listdir(folder):
         full_path = os.path.join(folder, entry)
         if os.path.isfile(full_path) and is_image_file(entry):
-            move_to_filename_folder(full_path, folder)
+            move_to_type_folder(full_path, folder)
             count += 1
     status_callback(f"Done. Sorted {count} image files.")
 
